@@ -1,10 +1,15 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BellIcon, ChatIcon, ChevronDownIcon, HomeIcon, UserGroupIcon, ViewGridIcon } from '@heroicons/react/solid'
 import { FlagIcon, PlayIcon, SearchIcon, ShoppingCartIcon } from '@heroicons/react/outline'
 import HeaderIcon from './HeaderIcon'
+import { signOut, useSession } from 'next-auth/react'
 
 const Header = () => {
+    const { data: session } = useSession()
+    useEffect(()=>{
+console.log(session)
+    },[])
     return (
         <div className='sticky top-0 bg-white z-50 flex shadow-md p-2 lg:px-5'>
             {/* left */}
@@ -30,9 +35,18 @@ const Header = () => {
 
             <div className='flex justify-end sm:space-x-2 items-center'>
                 {/* image */}
+                <Image
+                src={session.user.image}
+                width={40}
+                height={40}
+                layout='fixed'
+                className='rounded-full cursor-pointer'
+                onClick={signOut}
+                />
+
 
                 <p className='font-semibold pr-3 whitespace-nowrap'>
-                    Chiboka Xavier
+                  {session.user.name}
                 </p>
                 <ViewGridIcon className='icon'/>
                 <ChatIcon className='icon' />
