@@ -46,7 +46,7 @@ console.log(session)
 
 
                 <p className='font-semibold pr-3 whitespace-nowrap'>
-                  {session.user.namenp}
+                  {session.user.name}
                 </p>
                 <ViewGridIcon className='icon'/>
                 <ChatIcon className='icon' />
