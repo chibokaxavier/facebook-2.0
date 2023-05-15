@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { signOut, useSession } from "next-auth/react";
 import { EmojiHappyIcon } from "@heroicons/react/outline";
 import { CameraIcon, VideoCameraIcon } from "@heroicons/react/solid";
@@ -20,6 +20,22 @@ const Inputbox = () => {
   };
   const { data: session } = useSession();
   const inputRef = useRef(null);
+  const filePickerRef = useRef(null);
+  const [imageToPost, setImageToPost] = useState(null);
+
+  const addImageToPost = (e) => {
+    const reader = new FileReader()
+    if (e.target.files[0]){
+      reader.readAsDataURL(e.target.files[0])
+    }
+    reader.onload = (readerEvent)=>{
+      setImageToPost(readerEvent.target.result)
+    }
+  };
+
+  const removeImage =(e)=>{
+    setImageToPost(null)
+  }
 
   return (
     <div className="bg-white p-2 text-gray-500 font-medium rounded-xl shadow-md mt-6">
@@ -43,6 +59,13 @@ const Inputbox = () => {
             Submit
           </button>
         </form>
+
+        {imageToPost && (
+          <div onClick={removeImage} className="flex flex-col filter hover:brightness-110 transition duration-150 transform scale-105 cursor-pointer">
+            <img src={imageToPost} alt="" className="object-contain h-10"/>
+            <p className="text-red-700">Remove</p>
+          </div>
+        )}
       </div>
 
       <div className="flex justify-evenly  border-t p-3">
@@ -50,9 +73,18 @@ const Inputbox = () => {
           <VideoCameraIcon className="h-7 text-red-500 " />{" "}
           <p className="text-xs sm:text-sm xl:text-base">Live Video</p>
         </div>
-        <div className="inputIcon">
+        <div
+          className="inputIcon"
+          onClick={() => filePickerRef.current.click()}
+        >
           <CameraIcon className="h-7 text-green-400 " />{" "}
           <p className="text-xs sm:text-sm xl:text-base">Photo/Video</p>
+          <input
+            ref={filePickerRef}
+            type="file"
+            hidden
+            onChange={addImageToPost}
+          />
         </div>
         <div className="inputIcon">
           <EmojiHappyIcon className="h-7 text-yellow-300 " />{" "}
