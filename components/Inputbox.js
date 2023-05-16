@@ -4,18 +4,41 @@ import { signOut, useSession } from "next-auth/react";
 import { EmojiHappyIcon } from "@heroicons/react/outline";
 import { CameraIcon, VideoCameraIcon } from "@heroicons/react/solid";
 import { db } from "../firebase";
-import { serverTimestamp, collection, addDoc } from "firebase/firestore";
+import {
+  serverTimestamp,
+  collection,
+  addDoc,
+  doc,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { storage } from "../firebase";
+import { v4 as uuidv4 } from "uuid";
 
 const Inputbox = () => {
   const submitPost = async (e) => {
+    const mainId = uuidv4();
     e.preventDefault();
     if (!inputRef.current.value) return;
-    await addDoc(collection(db, "posts"), {
+    await setDoc(doc(db, "posts", mainId), {
       Message: inputRef.current.value,
       Name: session.user.name,
       Email: session.user.email,
       TimeStamp: serverTimestamp(),
+    }).then(() => {
+      if (imageToPost) {
+        const uploadTask = ref(storage, `posts/${uuidv4()}`);
+        removeImage();
+       uploadBytes(uploadTask, imageToPost).then(async (snapshot) => {
+          const downloadURL = await getDownloadURL(uploadTask);
+          await updateDoc(doc(db, "posts", mainId), {
+            image: downloadURL,
+          });
+        });
+      }
     });
+
     inputRef.current.value = "";
   };
   const { data: session } = useSession();
@@ -24,18 +47,18 @@ const Inputbox = () => {
   const [imageToPost, setImageToPost] = useState(null);
 
   const addImageToPost = (e) => {
-    const reader = new FileReader()
-    if (e.target.files[0]){
-      reader.readAsDataURL(e.target.files[0])
+    const reader = new FileReader();
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0]);
     }
-    reader.onload = (readerEvent)=>{
-      setImageToPost(readerEvent.target.result)
-    }
+    reader.onload = (readerEvent) => {
+      setImageToPost(readerEvent.target.result);
+    };
   };
 
-  const removeImage =(e)=>{
-    setImageToPost(null)
-  }
+  const removeImage = (e) => {
+    setImageToPost(null);
+  };
 
   return (
     <div className="bg-white p-2 text-gray-500 font-medium rounded-xl shadow-md mt-6">
@@ -61,8 +84,11 @@ const Inputbox = () => {
         </form>
 
         {imageToPost && (
-          <div onClick={removeImage} className="flex flex-col filter hover:brightness-110 transition duration-150 transform scale-105 cursor-pointer">
-            <img src={imageToPost} alt="" className="object-contain h-10"/>
+          <div
+            onClick={removeImage}
+            className="flex flex-col filter hover:brightness-110 transition duration-150 transform hover:scale-105 cursor-pointer"
+          >
+            <img src={imageToPost} alt="" className="object-contain h-10" />
             <p className="text-red-700">Remove</p>
           </div>
         )}
