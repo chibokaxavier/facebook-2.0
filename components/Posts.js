@@ -1,12 +1,46 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useCollection } from 'react-firebase-hooks/firestore'
+import {
+    getDoc,
+    getDocs,
+    collection,
+    doc,
+    onSnapshot,
+    query, orderBy, limit, Firestore
+} from "firebase/firestore";
+
+import { db } from '@/firebase';
+import Post from './Post';
 
 const Posts = () => {
-  return (
-    <div>
-        
-        <img src='https://firebasestorage.googleapis.com/v0/b/facebook-70e7b.appspot.com/o/posts%2F5ca18f08-81db-44fa-9df0-b1cdc14f02d5?alt=media&token=6e5f0947-374f-40c9-91bb-15d61082c32d' className='40'/>
-    </div>
-  )
+    const [realTimePosts, loading, error] = useCollection()
+    const [data, setData] = useState([])
+
+    const subscribeToChats = async ()=> {
+            const colRef = collection(db, `posts`)
+             const q = query(colRef, orderBy("TimeStamp"))
+             await onSnapshot(q, (snapshot) => {
+                 const post = snapshot.docs.map((doc) => ({
+                     id: doc.id,
+                     ...doc.data(),
+                 }));
+                setData(post);
+             });
+         }
+
+    useEffect(() => {
+        subscribeToChats()
+    }, [])
+    return (
+        <div>
+
+            {data.map((onePost) => (
+                <Post key={onePost.id} msg={onePost.Message}  img={onePost.image}/>
+            ))}
+        </div>
+    )
 }
 
 export default Posts
+
+

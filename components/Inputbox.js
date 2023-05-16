@@ -12,12 +12,16 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore";
-import { getDownloadURL, ref, uploadBytes,uploadString } from "firebase/storage";
+import {
+  getDownloadURL,
+  ref,
+  uploadBytes,
+  uploadString,
+} from "firebase/storage";
 import { storage } from "../firebase";
 import { v4 as uuidv4 } from "uuid";
 
 const Inputbox = () => {
- 
   const { data: session } = useSession();
   const inputRef = useRef(null);
   const filePickerRef = useRef(null);
@@ -34,16 +38,15 @@ const Inputbox = () => {
       TimeStamp: serverTimestamp(),
     }).then(() => {
       if (imageToPost) {
-        
         const uploadTask = ref(storage, `posts/${uuidv4()}`);
-       uploadString(uploadTask, imageToPost, 'data_url').then(async () => {
+        uploadString(uploadTask, imageToPost, "data_url").then(async () => {
           const downloadURL = await getDownloadURL(uploadTask);
           await updateDoc(doc(db, "posts", mainId), {
             image: downloadURL,
           });
         });
 
-        removeImage()
+        removeImage();
       }
     });
 
@@ -56,11 +59,8 @@ const Inputbox = () => {
       reader.readAsDataURL(e.target.files[0]);
     }
     reader.onload = (readerEvent) => {
-      
       setImageToPost(readerEvent.target.result);
-  
     };
-
   };
 
   const removeImage = (e) => {
