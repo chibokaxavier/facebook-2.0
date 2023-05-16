@@ -24,7 +24,7 @@ console.log(session)
             {/* center */}
             <div className='flex justify-center flex-grow'>
                 <div className='flex space-x-6 md:space-x-2 '>
-                    <HeaderIcon active Icon={HomeIcon} />
+                    <HeaderIcon active Icon={HomeIcon}  className="text-blue-500"/>
                     <HeaderIcon Icon={FlagIcon} />
                     <HeaderIcon Icon={PlayIcon} />
                     <HeaderIcon Icon={ShoppingCartIcon} />
