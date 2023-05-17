@@ -12,9 +12,9 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home({ session }) {
   // const { data: session } = useSession()
-  // if (!session) {
-  //   return <Login />
-  // }
+  if (!session) {
+    return <Login />
+  }
   return (
     <div className=' h-screen bg-gray-100 overflow-hidden'>
       <Head>
