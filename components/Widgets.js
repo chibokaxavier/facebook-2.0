@@ -1,6 +1,8 @@
 import React from "react";
 import {  DotsHorizontalIcon,VideoCameraIcon} from '@heroicons/react/solid'
 import { SearchIcon } from '@heroicons/react/outline'
+import Contact from "./Contact";
+
 
 const contacts = [
   {
@@ -23,7 +25,7 @@ const contacts = [
 
 const Widgets = () => {
   return <div className=" w-60  hidden lg:flex flex-col mt-5 ">
-    <div className="flex items-center mb-5 text-gray-500 justify-between">
+    <div className="flex items-center mb-5 text-gray-500 justify-between mr-2">
       <h2 className="text-xl">
         Contacts
       </h2>
@@ -33,6 +35,11 @@ const Widgets = () => {
         <DotsHorizontalIcon className="h-6"/>
       </div>
     </div>
+
+
+    {contacts.map((contact)=>(
+      <Contact key={contact.src} name={contact.name} img={contact.src}/>
+    ))}
   </div>;
 };
 
