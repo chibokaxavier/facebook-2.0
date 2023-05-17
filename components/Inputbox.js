@@ -73,7 +73,7 @@ const Inputbox = () => {
         <Image
           src={session.user.image}
           className="rounded-full"
-          layout="fixed"
+        fixed
           height={40}
           width={40}
         />

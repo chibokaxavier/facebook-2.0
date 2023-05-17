@@ -9,7 +9,7 @@ const SidebarRow = ({ src, Icon, title }) => {
           src={src}
           width={40}
           height={40}
-          layout="fixed"
+        fixed
           className="rounded-full"
         />
       )}
