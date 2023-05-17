@@ -11,6 +11,7 @@ const SidebarRow = ({ src, Icon, title }) => {
           height={40}
         fixed
           className="rounded-full"
+          alt="img"
         />
       )}
       {Icon && <Icon className="h-8 w-8 text-blue-500" />}

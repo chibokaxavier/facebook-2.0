@@ -16,7 +16,6 @@ import { db } from "@/firebase";
 import Post from "./Post";
 
 const Posts = () => {
-  const [realTimePosts, loading, error] = useCollection();
   const [data, setData] = useState([]);
 
   const subscribeToChats = async () => {

@@ -11,6 +11,7 @@ const Contact = ({ img, name }) => {
         height={50}
         className="rounded-[1000px]"
         style={{ objectFit: "cover" }}
+        alt="contact"
       />
       <p>{name}</p>
       <div className="absolute  bottom-2 left-7 bg-green-400 rounded-full h-3 w-3 animate-pulse"/>

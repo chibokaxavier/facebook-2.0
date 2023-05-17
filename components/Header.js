@@ -7,14 +7,11 @@ import { signOut, useSession } from 'next-auth/react'
 
 const Header = () => {
     const { data: session } = useSession()
-    useEffect(()=>{
-console.log(session)
-    },[])
     return (
         <div className='sticky top-0 bg-white z-50 flex shadow-md p-2 lg:px-5'>
             {/* left */}
             <div className='flex items-center '>
-                <Image src='https://links.papareact.com/5me' width={40} height={40} fixed />
+                <Image src='https://links.papareact.com/5me' width={40} height={40} fixed  alt='header'/>
                 <div className='flex ml-2  items-center rounded-full bg-gray-100 p-2'>
                     <SearchIcon className='h-6 text-gray-600' />
                     <input className='ml-2 hidden md:inline-flex  flex-shrink items-center bg-transparent outline-none placeholder-gray-500' type='text' placeholder='Search Facebook' />
@@ -42,6 +39,7 @@ console.log(session)
                 fixed
                 className='rounded-full cursor-pointer'
                 onClick={signOut}
+                alt='header'
                 />
 
 
