@@ -4,9 +4,6 @@ import React from "react";
 import { ChatAltIcon, ShareIcon, ThumbUpIcon } from "@heroicons/react/outline";
 
 const Post = ({ msg, img, name, email, timeStamp }) => {
-  if (!timeStamp) {
-    return null; // or handle the case when timeStamp is missing
-  }
   const { data: session } = useSession();
   return (
     <>
@@ -19,6 +16,7 @@ const Post = ({ msg, img, name, email, timeStamp }) => {
               className="rounded-full"
               width={40}
               height={40}
+              alt=""
             />
             <div>
               <p className="font-medium">{name}</p>
@@ -33,7 +31,7 @@ const Post = ({ msg, img, name, email, timeStamp }) => {
 
         {img && (
           <div className="relative  h-56 md:h-96 bg-white">
-            <Image src={img} style={{ objectFit: "cover" }} fill />
+            <Image src={img} style={{ objectFit: "cover" }} fill alt="" />
           </div>
         )}
 
