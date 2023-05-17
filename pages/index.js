@@ -6,6 +6,7 @@ import { getSession, useSession } from 'next-auth/react'
 import Login from '@/components/Login'
 import Sidebar from '@/components/Sidebar'
 import Feed from '@/components/Feed'
+import Widgets from '@/components/Widgets'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,7 +26,7 @@ export default function Home({ session }) {
 
         <Sidebar />
         <Feed />
-        {/* Widgets */}
+        <Widgets />
       </main>
 
     </div>
