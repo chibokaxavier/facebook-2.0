@@ -9,12 +9,12 @@ const SidebarRow = ({ src, Icon, title }) => {
           src={src}
           width={40}
           height={40}
-        fixed
+          fixed
           className="rounded-full"
           alt="img"
         />
       )}
-      {Icon && <Icon className="h-8 w-8 text-blue-500" />}
+      {Icon && <Icon className=" h-6 w-6 md:h-8 md:w-8 text-blue-500" />}
       <p className="hidden sm:inline-flex font-medium ">{title}</p>
     </div>
   );

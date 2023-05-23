@@ -36,7 +36,7 @@ const Post = ({ msg, img, name, email, timeStamp }) => {
         )}
 
         {/* footer of post */}
-        <div className="flex items-center rounded-b-2xl justify-between bg-white shadow-md border-t text-gray-400">
+        <div className="flex items-center rounded-b-2xl justify-between bg-white shadow-md border-t text-gray-400 pb-2">
           <div className="inputIcon">
             <ThumbUpIcon className="h-4" />
             <p className="text-sm sm:text-base"> Like</p>

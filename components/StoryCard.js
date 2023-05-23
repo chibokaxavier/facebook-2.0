@@ -7,19 +7,18 @@ const StoryCard = ({ name, src, profile }) => {
       <Image
         className="absolute opacity-0 lg:opacity-100 rounded-full z-50 top-10"
         src={profile}
-      fixed
-      style={{ objectFit: "cover" }}
+        fixed
+        style={{ objectFit: "cover" }}
         height={40}
         width={40}
         alt="img"
       />
-       <Image
+      <Image
         className="object-cover filter brightness-75 rounded-full lg:rounded-3xl"
         src={src}
         fill
         alt="img"
       />
-      
     </div>
   );
 };

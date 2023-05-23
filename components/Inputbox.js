@@ -84,7 +84,7 @@ const Inputbox = () => {
             type=""
             placeholder={`What's on your mind ${session.user.name} ?`}
             ref={inputRef}
-            className="rounded-full h-12 bg-gray-100 flex-grow px-5 focus:outline-none"
+            className="rounded-full h-8 md:h-12 bg-gray-100 flex-grow px-5 focus:outline-none"
           />
           <button hidden onClick={submitPost} type="submit">
             Submit
@@ -102,16 +102,16 @@ const Inputbox = () => {
         )}
       </div>
 
-      <div className="flex justify-evenly  border-t p-3">
+      <div className="flex justify-evenly border-t my-2 ">
         <div className="inputIcon">
-          <VideoCameraIcon className="h-7 text-red-500 " />{" "}
+          <VideoCameraIcon className="h-4 md:h-7 text-red-500 " />{" "}
           <p className="text-xs sm:text-sm xl:text-base">Live Video</p>
         </div>
         <div
           className="inputIcon"
           onClick={() => filePickerRef.current.click()}
         >
-          <CameraIcon className="h-7 text-green-400 " />{" "}
+          <CameraIcon className="h-4 md:h-7 text-green-400 " />{" "}
           <p className="text-xs sm:text-sm xl:text-base">Photo/Video</p>
           <input
             ref={filePickerRef}
@@ -121,7 +121,7 @@ const Inputbox = () => {
           />
         </div>
         <div className="inputIcon">
-          <EmojiHappyIcon className="h-7 text-yellow-300 " />{" "}
+          <EmojiHappyIcon className="h-4 md:h-7 text-yellow-300 " />{" "}
           <p className="text-xs sm:text-sm xl:text-base">Feeling/Activity</p>
         </div>
       </div>

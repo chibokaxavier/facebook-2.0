@@ -8,9 +8,9 @@ const nextConfig = {
       "firebasestorage.googleapis.com",
       "lh3.googleusercontent.com",
       "images.pexels.com",
-      "cdn.pixabay.com"
-    ]
-  }
-}
+      "cdn.pixabay.com",
+    ],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

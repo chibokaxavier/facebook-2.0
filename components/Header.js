@@ -20,7 +20,7 @@ const Header = () => {
 
             {/* center */}
             <div className='flex justify-center flex-grow'>
-                <div className='flex space-x-6 md:space-x-2 '>
+                <div className='flex space-x-3 md:space-x-2 '>
                     <HeaderIcon active Icon={HomeIcon}  className="text-blue-500"/>
                     <HeaderIcon Icon={FlagIcon} />
                     <HeaderIcon Icon={PlayIcon} />
@@ -43,7 +43,7 @@ const Header = () => {
                 />
 
 
-                <p className='font-semibold pr-3 whitespace-nowrap'>
+                <p className=' hidden md:inline-flex font-semibold whitespace-nowrap'>
                   {session.user.name}
                 </p>
                 <ViewGridIcon className='icon'/>
