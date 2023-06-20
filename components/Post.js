@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 import { ChatAltIcon, ShareIcon, ThumbUpIcon } from "@heroicons/react/outline";
 
-const Post = ({ msg, img, name, email, timeStamp }) => {
+const Post = ({ msg, img, name, email,userImage, timeStamp }) => {
   const { data: session } = useSession();
   return (
     <>
@@ -12,7 +12,7 @@ const Post = ({ msg, img, name, email, timeStamp }) => {
         <div className="p-5 mt-5 bg-white rounded-t-2xl shadow-sm">
           <div className="flex items-center space-x-2">
             <img
-              src={session?.user.image}
+              src={userImage}
               className="rounded-full"
               width={40}
               height={40}

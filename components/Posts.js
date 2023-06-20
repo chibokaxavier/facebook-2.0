@@ -42,6 +42,7 @@ const Posts = () => {
           img={onePost.image}
           name={onePost.Name}
           email={onePost.Email}
+          userImage={onePost.userImage}
           timeStamp={onePost.TimeStamp}
         />
       ))}

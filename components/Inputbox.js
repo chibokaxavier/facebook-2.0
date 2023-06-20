@@ -36,6 +36,7 @@ const Inputbox = () => {
       Name: session.user.name,
       Email: session.user.email,
       TimeStamp: serverTimestamp(),
+      userImage:session.user.image,
     }).then(() => {
       if (imageToPost) {
         const uploadTask = ref(storage, `posts/${uuidv4()}`);
@@ -73,7 +74,7 @@ const Inputbox = () => {
         <Image
           src={session.user.image}
           className="rounded-full"
-        fixed
+          fixed
           height={40}
           width={40}
           alt="image"
